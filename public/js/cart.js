@@ -5,7 +5,7 @@
 const Cart = {
   items: [],
   promo: null,
-  FREE_SHIPPING_THRESHOLD: 75.00,
+  FREE_SHIPPING_THRESHOLD: 1999.00,
 
   init() {
     this.loadCart();
@@ -176,11 +176,11 @@ const Cart = {
   getShippingFee() {
     if (this.items.length === 0) return 0;
     if (this.promo && this.promo.type === 'shipping') return 0;
-    return this.getSubtotal() >= this.FREE_SHIPPING_THRESHOLD ? 0 : 5.99;
+    return this.getSubtotal() >= this.FREE_SHIPPING_THRESHOLD ? 0 : 99;
   },
 
   getTax() {
-    return Math.round(this.getSubtotal() * 0.08 * 100) / 100; // 8% mock tax
+    return Math.round(this.getSubtotal() * 0.18); // 18% GST
   },
 
   getTotal() {
@@ -225,7 +225,7 @@ const Cart = {
           <div class="cart-item-info">
             <div>
               <div class="cart-item-title">${item.name}</div>
-              <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+              <div class="cart-item-price">₹${Number(item.price).toLocaleString('en-IN')}</div>
             </div>
             <div class="cart-item-controls">
               <div class="quantity-stepper">
@@ -249,12 +249,12 @@ const Cart = {
     if (progressFill && progressText) {
       if (subtotal >= this.FREE_SHIPPING_THRESHOLD || (this.promo && this.promo.type === 'shipping')) {
         progressFill.style.width = '100%';
-        progressText.innerHTML = '<span>🎉 You qualified for <strong>FREE Express Shipping!</strong></span>';
+        progressText.innerHTML = '<span>🎉 You qualified for <strong>FREE Delivery!</strong></span>';
       } else {
-        const remaining = (this.FREE_SHIPPING_THRESHOLD - subtotal).toFixed(2);
+        const remaining = (this.FREE_SHIPPING_THRESHOLD - subtotal).toLocaleString('en-IN');
         const percent = Math.min(100, Math.round((subtotal / this.FREE_SHIPPING_THRESHOLD) * 100));
         progressFill.style.width = `${percent}%`;
-        progressText.innerHTML = `<span>Add <strong>$${remaining}</strong> more for Free Shipping</span><span>${percent}%</span>`;
+        progressText.innerHTML = `<span>Add <strong>₹${remaining}</strong> more for Free Delivery</span><span>${percent}%</span>`;
       }
     }
 
@@ -265,17 +265,17 @@ const Cart = {
     const taxEl = document.getElementById('cartTax');
     const totalEl = document.getElementById('cartTotal');
 
-    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = `₹${Math.round(subtotal).toLocaleString('en-IN')}`;
     if (discountEl) {
       const discount = this.getDiscount();
-      discountEl.textContent = discount > 0 ? `-$${discount.toFixed(2)}` : '$0.00';
+      discountEl.textContent = discount > 0 ? `-₹${Math.round(discount).toLocaleString('en-IN')}` : '₹0';
     }
     if (shippingEl) {
       const shipping = this.getShippingFee();
-      shippingEl.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+      shippingEl.textContent = shipping === 0 ? 'FREE' : `₹${shipping}`;
     }
-    if (taxEl) taxEl.textContent = `$${this.getTax().toFixed(2)}`;
-    if (totalEl) totalEl.textContent = `$${this.getTotal().toFixed(2)}`;
+    if (taxEl) taxEl.textContent = `₹${Math.round(this.getTax()).toLocaleString('en-IN')}`;
+    if (totalEl) totalEl.textContent = `₹${Math.round(this.getTotal()).toLocaleString('en-IN')}`;
   }
 };
 

@@ -324,7 +324,7 @@ app.post('/api/products/:id/reviews', (req, res) => {
 
 const PROMO_CODES = {
   'WELCOME10': { type: 'percent', value: 10, desc: '10% Off First Order' },
-  'SAVE20': { type: 'fixed', value: 20, minSubtotal: 100, desc: '$20 Off orders over $100' },
+  'SAVE500': { type: 'fixed', value: 500, minSubtotal: 2000, desc: '₹500 Off orders over ₹2,000' },
   'FREESHIP': { type: 'shipping', value: 0, desc: 'Free Express Shipping' }
 };
 
@@ -340,7 +340,7 @@ app.post('/api/promo/apply', (req, res) => {
   }
 
   if (promo.minSubtotal && subtotal < promo.minSubtotal) {
-    return res.status(400).json({ error: `Promo requires a minimum subtotal of $${promo.minSubtotal}` });
+    return res.status(400).json({ error: `Promo requires a minimum subtotal of ₹${promo.minSubtotal}` });
   }
 
   res.json({
@@ -404,15 +404,15 @@ app.post('/api/orders', optionalAuth, (req, res) => {
       });
     }
 
-    // Shipping calculations
-    let shippingFee = shipping_method === 'express' ? 14.99 : (calculatedSubtotal >= 75 ? 0 : 5.99);
+    // Shipping calculations (INR)
+    let shippingFee = shipping_method === 'express' ? 199 : (calculatedSubtotal >= 1999 ? 0 : 99);
 
     // Promo calculation
     let discount = 0;
     if (promo_code && PROMO_CODES[promo_code.toUpperCase().trim()]) {
       const p = PROMO_CODES[promo_code.toUpperCase().trim()];
       if (p.type === 'percent') {
-        discount = (calculatedSubtotal * p.value) / 100;
+        discount = Math.round((calculatedSubtotal * p.value) / 100);
       } else if (p.type === 'fixed' && calculatedSubtotal >= (p.minSubtotal || 0)) {
         discount = p.value;
       } else if (p.type === 'shipping') {
@@ -420,7 +420,7 @@ app.post('/api/orders', optionalAuth, (req, res) => {
       }
     }
 
-    const tax = Math.round(calculatedSubtotal * 0.08 * 100) / 100; // 8% mock tax
+    const tax = Math.round(calculatedSubtotal * 0.18); // 18% GST in India
     const finalTotal = Math.max(0, calculatedSubtotal - discount + shippingFee + tax);
 
     // Generate unique Order Number (e.g. ORD-984210)
@@ -448,9 +448,9 @@ app.post('/api/orders', optionalAuth, (req, res) => {
       shipping_address.trim(),
       shipping_city.trim(),
       shipping_postal_code.trim(),
-      shipping_country || 'United States',
-      shipping_method || 'Standard',
-      payment_method || 'Credit Card',
+      shipping_country || 'India',
+      shipping_method || 'Standard Delivery',
+      payment_method || 'UPI / Card',
       calculatedSubtotal,
       discount,
       shippingFee,

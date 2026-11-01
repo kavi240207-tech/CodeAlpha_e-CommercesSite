@@ -242,7 +242,7 @@ const Auth = {
             </div>
             <div style="text-align: right;">
               <span class="order-badge">${order.status}</span>
-              <div style="font-weight: 800; font-size: 1.1rem; color: #fff; margin-top: 4px;">$${order.total.toFixed(2)}</div>
+              <div style="font-weight: 800; font-size: 1.1rem; color: #fff; margin-top: 4px;">₹${Math.round(order.total).toLocaleString('en-IN')}</div>
             </div>
           </div>
           <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">

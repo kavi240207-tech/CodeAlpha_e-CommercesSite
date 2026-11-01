@@ -1,7 +1,7 @@
 {
-  "name": "e-commers",
+  "name": "jk-store",
   "version": "1.0.0",
-  "description": "",
+  "description": "JK STORE - Full-stack E-Commerce Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

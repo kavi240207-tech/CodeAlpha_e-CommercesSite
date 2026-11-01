@@ -122,8 +122,8 @@ function seedDataIfEmpty() {
         name: 'Aura Pro Studio ANC Headphones',
         slug: 'aura-pro-studio-anc-headphones',
         category: 'Audio',
-        price: 349.99,
-        original_price: 399.99,
+        price: 24999.00,
+        original_price: 29999.00,
         description: 'Immerse yourself in acoustic perfection. Featuring custom 40mm beryllium drivers, hybrid active noise cancellation, and 45 hours of continuous battery life.',
         features: JSON.stringify([
           'Hybrid Active Noise Cancellation with Transparency mode',
@@ -155,8 +155,8 @@ function seedDataIfEmpty() {
         name: 'Chronos Horizon Titanium Smartwatch',
         slug: 'chronos-horizon-titanium-smartwatch',
         category: 'Wearables',
-        price: 279.00,
-        original_price: 329.00,
+        price: 19999.00,
+        original_price: 24999.00,
         description: 'Precision aerospace-grade titanium chassis with sapphire crystal AMOLED display. Tracks heart rate variability, SpO2, sleep stages, and over 120 sports modes with surgical accuracy.',
         features: JSON.stringify([
           'Aerospace grade Grade-5 Titanium casing',
@@ -187,8 +187,8 @@ function seedDataIfEmpty() {
         name: 'Vortex Mechanical Keyboard Pro',
         slug: 'vortex-mechanical-keyboard-pro',
         category: 'Gadgets',
-        price: 159.50,
-        original_price: 189.99,
+        price: 11999.00,
+        original_price: 14999.00,
         description: 'Gasket-mounted hot-swappable mechanical keyboard with CNC-milled aluminum frame, factory-lubed custom tactile switches, and south-facing per-key RGB illumination.',
         features: JSON.stringify([
           'Anodized CNC Aluminum chassis with brass weight',
@@ -218,8 +218,8 @@ function seedDataIfEmpty() {
         name: 'Lumix Alpha Prime Camera Lens',
         slug: 'lumix-alpha-prime-camera-lens',
         category: 'Photography',
-        price: 899.00,
-        original_price: 999.00,
+        price: 69999.00,
+        original_price: 79999.00,
         description: 'Ultra-fast f/1.2 portrait prime lens designed for high-resolution full-frame mirrorless systems. Produces dreamy creamy bokeh and surgical edge-to-edge sharpness.',
         features: JSON.stringify([
           'Stunning f/1.2 maximum aperture for low light masterclass',
@@ -249,8 +249,8 @@ function seedDataIfEmpty() {
         name: 'AeroPulse Wireless Earbuds Gen 2',
         slug: 'aeropulse-wireless-earbuds-gen-2',
         category: 'Audio',
-        price: 129.99,
-        original_price: 169.99,
+        price: 8999.00,
+        original_price: 11999.00,
         description: 'Featherlight true wireless earbuds delivering rich dynamic bass, spatial audio head tracking, and crystal clear call clarity with dual beamforming microphones.',
         features: JSON.stringify([
           'Spatial Audio with dynamic head position tracking',
@@ -279,8 +279,8 @@ function seedDataIfEmpty() {
         name: 'NeoGrip Precision Wireless Mouse',
         slug: 'neogrip-precision-wireless-mouse',
         category: 'Gadgets',
-        price: 89.95,
-        original_price: 109.95,
+        price: 5999.00,
+        original_price: 7499.00,
         description: 'Sculpted ergonomic silhouette engineered for all-day comfort. Features an electro-magnetic MagSpeed scroll wheel and an 8,000 DPI sensor tracking smoothly on any surface including glass.',
         features: JSON.stringify([
           'MagSpeed electromagnetic scroll wheel (1,000 lines per second)',
@@ -308,8 +308,8 @@ function seedDataIfEmpty() {
         name: 'Minimalist Matte Leather Backpack',
         slug: 'minimalist-matte-leather-backpack',
         category: 'Lifestyle',
-        price: 195.00,
-        original_price: 240.00,
+        price: 12999.00,
+        original_price: 15999.00,
         description: 'Handcrafted waterproof full-grain Italian leather daypack. Thoughtfully partitioned for a 16-inch laptop, tablet, passport pocket, and expandable magnetic top latch.',
         features: JSON.stringify([
           'Full-grain vegetable-tanned Italian leather with water-repellent finish',
@@ -337,8 +337,8 @@ function seedDataIfEmpty() {
         name: 'MagCharge 3-in-1 Foldable Dock',
         slug: 'magcharge-3-in-1-foldable-dock',
         category: 'Gadgets',
-        price: 79.99,
-        original_price: 99.99,
+        price: 4999.00,
+        original_price: 6499.00,
         description: 'Aircraft-grade anodized aluminum 3-in-1 wireless charging station. Powers your smartphone, smartwatch, and wireless earbuds simultaneously from a single sleek foldable stand.',
         features: JSON.stringify([
           'Official 15W MagSafe fast-charging alignment',
@@ -389,6 +389,26 @@ function seedDataIfEmpty() {
     insertReview.run(1, 'Marcus Vance', 5, 'Worth Every Cent', 'Battery lasted an entire week of daily work commutes and Zoom calls. The comfort level is 10/10.', 1);
     insertReview.run(2, 'Sarah Lin', 5, 'Flawless Watch', 'The titanium finish is stunning in person. Sapphire glass has zero scratches despite trail running and gym workouts.', 1);
     insertReview.run(3, 'David K.', 5, 'Typing Nirvana', 'The tactile switch response is so satisfying. The aluminum chassis is heavy and stays firmly planted on my desk.', 1);
+  } else {
+    // If database already existed with USD prices, migrate to INR
+    const checkP = db.prepare('SELECT price FROM products WHERE id = 1').get();
+    if (checkP && checkP.price < 1000) {
+      const inrPrices = [
+        { id: 1, price: 24999.00, orig: 29999.00 },
+        { id: 2, price: 19999.00, orig: 24999.00 },
+        { id: 3, price: 11999.00, orig: 14999.00 },
+        { id: 4, price: 69999.00, orig: 79999.00 },
+        { id: 5, price: 8999.00, orig: 11999.00 },
+        { id: 6, price: 5999.00, orig: 7499.00 },
+        { id: 7, price: 12999.00, orig: 15999.00 },
+        { id: 8, price: 4999.00, orig: 6499.00 }
+      ];
+      const updateStmt = db.prepare('UPDATE products SET price = ?, original_price = ? WHERE id = ?');
+      for (const p of inrPrices) {
+        updateStmt.run(p.price, p.orig, p.id);
+      }
+      console.log('Migrated product prices to Indian Rupees (INR ₹)!');
+    }
   }
 }
 

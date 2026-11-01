@@ -243,8 +243,8 @@ const App = {
           <p class="product-desc">${product.description}</p>
           <div class="product-footer">
             <div class="product-price-wrapper">
-              <span class="product-price">$${product.price.toFixed(2)}</span>
-              ${product.original_price ? `<span class="product-original-price">$${product.original_price.toFixed(2)}</span>` : ''}
+              <span class="product-price">₹${Number(product.price).toLocaleString('en-IN')}</span>
+              ${product.original_price ? `<span class="product-original-price">₹${Number(product.original_price).toLocaleString('en-IN')}</span>` : ''}
             </div>
             <button class="btn-add-to-cart" onclick="App.quickAddToCart(event, ${product.id})" title="Add to Cart">
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
@@ -278,12 +278,12 @@ const App = {
       // Populate details
       document.getElementById('detailCategory').textContent = product.category;
       document.getElementById('detailTitle').textContent = product.name;
-      document.getElementById('detailPrice').textContent = `$${product.price.toFixed(2)}`;
+      document.getElementById('detailPrice').textContent = `₹${Number(product.price).toLocaleString('en-IN')}`;
       
       const origPriceEl = document.getElementById('detailOrigPrice');
       const saveBadgeEl = document.getElementById('detailSaveBadge');
       if (product.original_price) {
-        origPriceEl.textContent = `$${product.original_price.toFixed(2)}`;
+        origPriceEl.textContent = `₹${Number(product.original_price).toLocaleString('en-IN')}`;
         origPriceEl.style.display = 'inline';
         const savings = Math.round(((product.original_price - product.price) / product.original_price) * 100);
         saveBadgeEl.textContent = `Save ${savings}%`;
@@ -437,18 +437,18 @@ const App = {
           <img src="${item.image}" style="width: 36px; height: 36px; border-radius: 6px; object-fit: cover;" />
           <div>
             <div style="font-weight: 600; color: #fff;">${item.name}</div>
-            <div style="color: var(--text-muted); font-size: 0.8rem;">Qty: ${item.quantity} × $${item.price.toFixed(2)}</div>
+            <div style="color: var(--text-muted); font-size: 0.8rem;">Qty: ${item.quantity} × ₹${Number(item.price).toLocaleString('en-IN')}</div>
           </div>
         </div>
-        <div style="font-weight: 700; color: #fff;">$${(item.price * item.quantity).toFixed(2)}</div>
+        <div style="font-weight: 700; color: #fff;">₹${Math.round(item.price * item.quantity).toLocaleString('en-IN')}</div>
       </div>
     `).join('');
 
-    document.getElementById('checkoutSubtotal').textContent = `$${window.Cart.getSubtotal().toFixed(2)}`;
-    document.getElementById('checkoutDiscount').textContent = `-$${window.Cart.getDiscount().toFixed(2)}`;
-    document.getElementById('checkoutShipping').textContent = window.Cart.getShippingFee() === 0 ? 'FREE' : `$${window.Cart.getShippingFee().toFixed(2)}`;
-    document.getElementById('checkoutTax').textContent = `$${window.Cart.getTax().toFixed(2)}`;
-    document.getElementById('checkoutTotal').textContent = `$${window.Cart.getTotal().toFixed(2)}`;
+    document.getElementById('checkoutSubtotal').textContent = `₹${Math.round(window.Cart.getSubtotal()).toLocaleString('en-IN')}`;
+    document.getElementById('checkoutDiscount').textContent = `-₹${Math.round(window.Cart.getDiscount()).toLocaleString('en-IN')}`;
+    document.getElementById('checkoutShipping').textContent = window.Cart.getShippingFee() === 0 ? 'FREE' : `₹${window.Cart.getShippingFee()}`;
+    document.getElementById('checkoutTax').textContent = `₹${Math.round(window.Cart.getTax()).toLocaleString('en-IN')}`;
+    document.getElementById('checkoutTotal').textContent = `₹${Math.round(window.Cart.getTotal()).toLocaleString('en-IN')}`;
   },
 
   async handleCheckoutSubmit(e) {
@@ -464,9 +464,9 @@ const App = {
       shipping_address: document.getElementById('checkoutAddress').value,
       shipping_city: document.getElementById('checkoutCity').value,
       shipping_postal_code: document.getElementById('checkoutZip').value,
-      shipping_country: 'United States',
+      shipping_country: 'India',
       shipping_method: document.querySelector('input[name="shipping_method"]:checked')?.value || 'standard',
-      payment_method: document.querySelector('input[name="payment_method"]:checked')?.value || 'Credit Card',
+      payment_method: document.querySelector('input[name="payment_method"]:checked')?.value || 'UPI / QR',
       items: window.Cart.items,
       promo_code: window.Cart.promo ? window.Cart.promo.code : null
     };
@@ -481,7 +481,7 @@ const App = {
       // Open Success Modal
       const order = response.order;
       document.getElementById('successOrderNumber').textContent = order.order_number;
-      document.getElementById('successOrderTotal').textContent = `$${order.total.toFixed(2)}`;
+      document.getElementById('successOrderTotal').textContent = `₹${Math.round(order.total).toLocaleString('en-IN')}`;
       document.getElementById('successRecipient').textContent = `${order.customer_name} (${order.customer_email})`;
       document.getElementById('successAddress').textContent = order.shipping_address;
       document.getElementById('successOverlay').classList.add('active');
