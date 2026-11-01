@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMEN & CO. | Premium Electronics & Minimalist Lifestyle</title>
+  <meta name="description" content="Discover precision-crafted audio, titanium wearables, mechanical keyboards, and lifestyle accessories engineered for perfection.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge-pill">Special Launch</span>
+    <span>Use code <strong style="color: #fff; text-decoration: underline;">WELCOME10</strong> for 10% off your first order! • Free Shipping on orders $75+</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand-logo" id="brandLogo">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <span>LUMEN<span class="gradient-text">&amp;CO.</span></span>
+      </a>
+
+      <!-- Search Input -->
+      <div class="search-box-wrapper">
+        <span class="search-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+        </span>
+        <input type="text" id="searchInput" placeholder="Search headphones, keyboards, cameras..." autocomplete="off">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Guest Nav -->
+        <div id="guestNav">
+          <button class="nav-btn" id="loginTriggerBtn">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/></svg>
+            <span>Sign In</span>
+          </button>
+        </div>
+
+        <!-- Logged In Nav -->
+        <div id="userNav" class="user-menu-wrapper" style="display: none;">
+          <button class="user-avatar-btn" id="userAvatarBtn">
+            <img id="userAvatarImg" src="" alt="User Avatar">
+            <span id="userNameSpan">Account</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="dropdown-item" id="myOrdersBtn">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+              <span>My Orders</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" id="logoutBtn" style="color: var(--danger);">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/></svg>
+              <span>Sign Out</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Trigger -->
+        <button class="nav-btn cart-btn" id="cartTriggerBtn">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+          <span>Cart</span>
+          <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <span>Next-Gen Audio Experience</span>
+          </div>
+          <h1 class="hero-title">Engineered for <span class="gradient-text">Pure Sound</span> &amp; Modern Living.</h1>
+          <p class="hero-subtitle">Discover our studio-grade active noise-cancelling headphones and precision titanium gadgets designed for masters of their craft.</p>
+          <div class="hero-cta-group">
+            <button class="btn-primary" onclick="App.openProductModal(1)">
+              <span>Explore Aura Studio Pro</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </button>
+            <a href="#catalog" class="btn-outline">Browse All Gear</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Aura Pro Studio ANC Headphones">
+          <div class="hero-floating-card">
+            <div style="background: var(--success); width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 10px var(--success);"></div>
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 700; color: #fff;">45-Hour Playtime</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">Beryllium Drivers • ANC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Features Bar -->
+    <section class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.948c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75"/></svg>
+        </div>
+        <div class="trust-info">
+          <h4>Free Express Shipping</h4>
+          <p>On all orders exceeding $75</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <div class="trust-info">
+          <h4>2-Year Full Warranty</h4>
+          <p>Complete replacement protection</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+        </div>
+        <div class="trust-info">
+          <h4>30-Day Hassle-Free Returns</h4>
+          <p>100% money back guarantee</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+        </div>
+        <div class="trust-info">
+          <h4>Encrypted Checkout</h4>
+          <p>256-bit SSL secure processing</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Controls -->
+    <section id="catalog" class="shop-controls">
+      <div class="category-pills" id="categoryPills">
+        <button class="category-pill active" data-category="All">All Gear</button>
+        <button class="category-pill" data-category="Audio">Audio</button>
+        <button class="category-pill" data-category="Wearables">Wearables</button>
+        <button class="category-pill" data-category="Gadgets">Gadgets</button>
+        <button class="category-pill" data-category="Photography">Photography</button>
+        <button class="category-pill" data-category="Lifestyle">Lifestyle</button>
+      </div>
+
+      <div class="sorting-wrapper">
+        <label for="sortSelect">Sort By:</label>
+        <select class="custom-select" id="sortSelect">
+          <option value="featured">Featured &amp; Recommended</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+          <option value="newest">Newest Additions</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-grid" id="productsGrid">
+      <!-- Populated dynamically via app.js -->
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       SLIDE-OUT SHOPPING CART DRAWER
+       =================================================================== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+        <span>Your Shopping Cart</span>
+        <span id="cartDrawerCount" style="color: var(--text-muted); font-size: 1rem; font-weight: 500;">(0)</span>
+      </div>
+      <button class="cart-close-btn" id="cartCloseBtn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Goal Progress -->
+    <div class="shipping-progress-container">
+      <div class="shipping-progress-text" id="shippingProgressText">
+        <span>Add <strong>$75.00</strong> more for Free Shipping</span>
+        <span>0%</span>
+      </div>
+      <div class="shipping-progress-bar-bg">
+        <div class="shipping-progress-bar-fill" id="shippingProgressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable List -->
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Populated dynamically via cart.js -->
+    </div>
+
+    <!-- Cart Footer & Summary -->
+    <div class="cart-drawer-footer">
+      <!-- Promo code input -->
+      <div class="promo-input-group">
+        <input type="text" id="promoCodeInput" placeholder="Promo code (e.g. WELCOME10)">
+        <button class="promo-apply-btn" id="promoApplyBtn">Apply</button>
+      </div>
+      <div class="promo-feedback" id="promoFeedback"></div>
+
+      <!-- Financial Lines -->
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Promo Discount</span>
+        <span id="cartDiscount" style="color: var(--success);">$0.00</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Shipping (Standard)</span>
+        <span id="cartShipping">$0.00</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Estimated Tax (8%)</span>
+        <span id="cartTax">$0.00</span>
+      </div>
+      <div class="cart-summary-line total">
+        <span>Total Amount</span>
+        <span id="cartTotal" class="gradient-text">$0.00</span>
+      </div>
+
+      <button class="btn-primary btn-checkout" id="proceedCheckoutBtn">
+        <span>Proceed to Checkout</span>
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       PRODUCT DETAILS MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="productOverlay">
+    <div class="modal-box product-modal-box">
+      <button class="modal-close-btn" id="productModalClose">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="product-detail-layout">
+        <!-- Gallery -->
+        <div class="gallery-container">
+          <div class="main-image-wrap">
+            <img id="detailMainImage" src="" alt="Product Detail">
+          </div>
+          <div class="thumbnail-row" id="detailThumbnailRow">
+            <!-- Thumbs injected via JS -->
+          </div>
+        </div>
+
+        <!-- Detail Information -->
+        <div class="detail-content">
+          <div class="detail-badge-cat">
+            <span class="product-cat-name" id="detailCategory">Category</span>
+          </div>
+          <h2 class="detail-title" id="detailTitle">Product Title</h2>
+          
+          <div class="detail-rating-row">
+            <div class="product-rating">
+              <span style="color: #fbbf24; font-size: 1.1rem;">★</span>
+              <span id="detailRatingNum" style="color: #fff; font-weight: 700;">4.9</span>
+            </div>
+            <span id="detailReviewsCount" style="color: var(--text-muted); font-size: 0.88rem;">(0 reviews)</span>
+          </div>
+
+          <div class="detail-price-box">
+            <span class="detail-price" id="detailPrice">$0.00</span>
+            <span class="detail-orig-price" id="detailOrigPrice">$0.00</span>
+            <span class="detail-save-badge" id="detailSaveBadge">Save 15%</span>
+          </div>
+
+          <p class="detail-description" id="detailDescription"></p>
+
+          <ul class="features-list" id="detailFeaturesList">
+            <!-- Bullet features -->
+          </ul>
+
+          <div class="stock-indicator">
+            <span class="stock-dot"></span>
+            <span id="detailStockText">In Stock</span>
+          </div>
+
+          <!-- Actions -->
+          <div class="detail-actions">
+            <div class="detail-stepper">
+              <button id="detailQtyMinus">-</button>
+              <span id="detailQtyVal">1</span>
+              <button id="detailQtyPlus">+</button>
+            </div>
+            <button class="btn-primary" id="detailAddToCartBtn" style="flex: 1;">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+              <span>Add to Cart</span>
+            </button>
+            <button class="btn-outline" id="detailBuyNowBtn">
+              <span>Buy Now</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs (Specs & Customer Reviews) -->
+      <div class="product-tabs-section">
+        <div class="tabs-nav">
+          <button class="tab-btn active" id="tabSpecs">Specifications</button>
+          <button class="tab-btn" id="tabReviews">Customer Reviews</button>
+        </div>
+
+        <div class="tab-content active" id="tabPaneSpecs">
+          <div class="specs-grid" id="detailSpecsGrid">
+            <!-- Specs key-values -->
+          </div>
+        </div>
+
+        <div class="tab-content" id="tabPaneReviews">
+          <div class="reviews-container" id="detailReviewsContainer">
+            <!-- Reviews injected -->
+          </div>
+
+          <!-- Write a Review Form -->
+          <div class="add-review-box">
+            <h4 style="margin-bottom: 14px;">Leave a Verified Review</h4>
+            <form id="addReviewForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Your Name *</label>
+                  <input type="text" class="form-control" id="reviewAuthorName" placeholder="e.g. Jordan Smith" required>
+                </div>
+                <div class="form-group">
+                  <label>Rating *</label>
+                  <select class="form-control" id="reviewRatingSelect">
+                    <option value="5">★★★★★ (5 - Outstanding)</option>
+                    <option value="4">★★★★☆ (4 - Very Good)</option>
+                    <option value="3">★★★☆☆ (3 - Average)</option>
+                    <option value="2">★★☆☆☆ (2 - Below Expectations)</option>
+                    <option value="1">★☆☆☆☆ (1 - Poor)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Review Headline</label>
+                <input type="text" class="form-control" id="reviewTitle" placeholder="Sum up your experience...">
+              </div>
+              <div class="form-group">
+                <label>Your Feedback *</label>
+                <textarea class="form-control" id="reviewComment" rows="3" placeholder="Share how this product performed for you..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">Post Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       CHECKOUT MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="checkoutOverlay">
+    <div class="modal-box checkout-modal-box">
+      <button class="modal-close-btn" id="checkoutModalClose">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <h2 style="font-size: 1.6rem; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+        <svg width="24" height="24" fill="none" stroke="var(--accent-primary)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+        <span>Secure Checkout</span>
+      </h2>
+
+      <form id="checkoutForm">
+        <div class="checkout-grid">
+          <!-- Left Column: Shipping & Payment -->
+          <div>
+            <h4 style="margin-bottom: 14px; font-size: 1rem; color: #fff;">1. Customer &amp; Shipping Details</h4>
+            
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" class="form-control" id="checkoutName" placeholder="e.g. Alex Morgan" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" class="form-control" id="checkoutEmail" placeholder="alex@example.com" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" class="form-control" id="checkoutPhone" placeholder="+1 (555) 019-2834">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Street Address *</label>
+              <input type="text" class="form-control" id="checkoutAddress" placeholder="1248 Innovation Blvd, Suite 400" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" class="form-control" id="checkoutCity" placeholder="San Francisco" required>
+              </div>
+              <div class="form-group">
+                <label>Postal Code *</label>
+                <input type="text" class="form-control" id="checkoutZip" placeholder="94103" required>
+              </div>
+            </div>
+
+            <h4 style="margin: 22px 0 12px; font-size: 1rem; color: #fff;">2. Shipping Method</h4>
+            <div class="shipping-method-cards">
+              <label class="option-card selected">
+                <div>
+                  <input type="radio" name="shipping_method" value="standard" checked>
+                  <strong>Standard Ground (3-5 Days)</strong>
+                </div>
+                <span>Free over $75</span>
+              </label>
+              <label class="option-card">
+                <div>
+                  <input type="radio" name="shipping_method" value="express">
+                  <strong>Express Priority (1-2 Days)</strong>
+                </div>
+                <span>$14.99</span>
+              </label>
+            </div>
+
+            <h4 style="margin: 22px 0 12px; font-size: 1rem; color: #fff;">3. Payment Method</h4>
+            <div class="payment-cards">
+              <label class="option-card selected">
+                <div>
+                  <input type="radio" name="payment_method" value="Credit Card" checked>
+                  <strong>Credit / Debit Card</strong>
+                </div>
+                <span>Visa / MC / Amex</span>
+              </label>
+              <label class="option-card">
+                <div>
+                  <input type="radio" name="payment_method" value="PayPal">
+                  <strong>PayPal Express</strong>
+                </div>
+                <span>Instant</span>
+              </label>
+              <label class="option-card">
+                <div>
+                  <input type="radio" name="payment_method" value="Cash on Delivery">
+                  <strong>Cash on Delivery (COD)</strong>
+                </div>
+                <span>Pay on arrival</span>
+              </label>
+            </div>
+
+            <!-- Mock Card Fields -->
+            <div id="cardFields" style="background: rgba(255, 255, 255, 0.03); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 20px;">
+              <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" class="form-control" placeholder="4532 •••• •••• 8821" value="4532 •••• •••• 8821" readonly>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Expires</label>
+                  <input type="text" class="form-control" placeholder="12/28" value="12/28" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Security Code (CVC)</label>
+                  <input type="password" class="form-control" placeholder="•••" value="789" readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Order Review -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 22px; height: fit-content;">
+            <h4 style="font-size: 1.05rem; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">Order Review</h4>
+            <div id="checkoutItemsReview">
+              <!-- Item lines -->
+            </div>
+
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 14px; margin-top: 14px;">
+              <div class="cart-summary-line">
+                <span>Subtotal</span>
+                <span id="checkoutSubtotal">$0.00</span>
+              </div>
+              <div class="cart-summary-line">
+                <span>Discount</span>
+                <span id="checkoutDiscount" style="color: var(--success);">$0.00</span>
+              </div>
+              <div class="cart-summary-line">
+                <span>Shipping</span>
+                <span id="checkoutShipping">$0.00</span>
+              </div>
+              <div class="cart-summary-line">
+                <span>Tax</span>
+                <span id="checkoutTax">$0.00</span>
+              </div>
+              <div class="cart-summary-line total">
+                <span>Grand Total</span>
+                <span id="checkoutTotal" class="gradient-text">$0.00</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="placeOrderBtn" style="width: 100%; margin-top: 20px; padding: 14px; justify-content: center;">
+              Place Order &amp; Pay
+            </button>
+            <p style="text-align: center; color: var(--text-subtle); font-size: 0.75rem; margin-top: 12px;">
+              🔒 Encrypted with 256-bit AES encryption.
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       ORDER CONFIRMATION SUCCESS MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="successOverlay">
+    <div class="modal-box" style="width: 100%; max-width: 520px; padding: 40px 32px; text-align: center;">
+      <button class="modal-close-btn" id="successModalClose">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div style="width: 72px; height: 72px; background: rgba(16, 185, 129, 0.15); border: 2px solid var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--success); box-shadow: var(--success-glow);">
+        <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+      </div>
+
+      <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Order Confirmed!</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Thank you for your purchase. We are preparing your shipment.</p>
+
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; text-align: left; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: var(--text-muted); font-size: 0.88rem;">Order Number</span>
+          <strong id="successOrderNumber" style="color: #fff; font-family: var(--font-heading); font-size: 1rem;">ORD-000000</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: var(--text-muted); font-size: 0.88rem;">Total Charged</span>
+          <strong id="successOrderTotal" style="color: #fff;">$0.00</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: var(--text-muted); font-size: 0.88rem;">Recipient</span>
+          <span id="successRecipient" style="color: #fff; font-size: 0.88rem;">Customer</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--text-muted); font-size: 0.88rem;">Estimated Delivery</span>
+          <span style="color: #34d399; font-weight: 600; font-size: 0.88rem;">3-5 Business Days</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button class="btn-primary" id="successViewOrdersBtn">View My Orders</button>
+        <button class="btn-outline" id="successContinueBtn">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       USER AUTH MODAL (LOGIN / REGISTER)
+       =================================================================== -->
+  <div class="modal-overlay" id="authOverlay">
+    <div class="modal-box auth-modal-box">
+      <button class="modal-close-btn" id="authModalClose">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLogin">Sign In</button>
+        <button class="auth-tab-btn" id="tabRegister">Create Account</button>
+      </div>
+
+      <!-- Quick 1-Click Demo Account -->
+      <div class="demo-account-box">
+        <div class="demo-account-text">
+          <strong>Demo User:</strong> demo@ecommerce.com
+        </div>
+        <button type="button" class="demo-fill-btn" id="demoFillBtn">Auto-Fill</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <div id="loginFormWrap">
+        <form id="loginForm">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" id="loginEmail" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
+          </div>
+          <div id="loginError" style="color: var(--danger); font-size: 0.84rem; margin-bottom: 12px;"></div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+            Sign In
+          </button>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerFormWrap" style="display: none;">
+        <form id="registerForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" id="regName" placeholder="e.g. Maya Lin" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" id="regEmail" placeholder="maya@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password (min. 6 characters)</label>
+            <input type="password" class="form-control" id="regPassword" placeholder="••••••••" minlength="6" required>
+          </div>
+          <div id="regError" style="color: var(--danger); font-size: 0.84rem; margin-bottom: 12px;"></div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+            Create Free Account
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MY ORDERS HISTORY MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="ordersOverlay">
+    <div class="modal-box orders-modal-box">
+      <button class="modal-close-btn" id="ordersModalClose">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <h2 style="font-size: 1.6rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <svg width="24" height="24" fill="none" stroke="var(--accent-primary)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+        <span>Your Order History</span>
+      </h2>
+
+      <div id="ordersListContainer">
+        <!-- Rendered dynamically via auth.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="brand-logo-icon">
+              <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <span>LUMEN<span class="gradient-text">&amp;CO.</span></span>
+          </div>
+          <p>Architects of precision lifestyle electronics, high-fidelity acoustics, and tactile gear built for creators, innovators, and minimalists worldwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog">Acoustic Audio</a></li>
+            <li><a href="#catalog">Titanium Wearables</a></li>
+            <li><a href="#catalog">Mechanical Keyboards</a></li>
+            <li><a href="#catalog">Full-Frame Photography</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="Auth.openOrdersModal()">Track My Order</a></li>
+            <li><a href="javascript:void(0)" onclick="Cart.openDrawer()">View Bag</a></li>
+            <li><a href="javascript:void(0)">Warranty Claims</a></li>
+            <li><a href="javascript:void(0)">Shipping &amp; Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="margin-bottom: 12px;">Get private invites to product drops and secret promotional codes.</p>
+          <div style="display: flex; gap: 8px;">
+            <input type="email" class="form-control" placeholder="Enter your email..." style="font-size: 0.85rem;">
+            <button class="btn-primary" style="padding: 0 16px; font-size: 0.85rem;" onclick="showToast('Thank you for subscribing!', 'success')">Join</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LUMEN &amp; CO. All Rights Reserved. Built with Node.js, Express, and SQLite.</span>
+        <span>Crafted with pure HTML5, CSS3, &amp; Vanilla JavaScript.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
